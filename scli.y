@@ -14,11 +14,13 @@
 %token <str> NAME
 %token <str> FILE_NAME
 %token PRG_EOF
+%token ENDL
 
 %{
 #define YYDEBUG 1
 
 #include <stdio.h>
+#include "scli.h"
 
 extern int yylex();
 extern FILE *yyin;
@@ -27,44 +29,27 @@ extern int yyerror(char *s);
 
 %%
 
-prog_ex:
- prog
- |
- prog stmt_ex
- ;
+prog: WSPACE stmts
+    | ENDL stmts
+    | stmts
+    ;
 
-prog:
- prog stmt_ex NLINE
- |
- NLINE
- |
- ;
+stmts: stmts stmt
+     |
+     ;
 
-stmt_ex:
- sns KEY_HELP sns {printf(">> welcome to scli help menu\n");}
- |
- sns KEY_QUIT sns {printf(">> quitting.. \n");}
- |
- sns KEY_LOAD sns {printf(">> loading.. \n");}
- |
- sns KEY_LOAD WSPACE FILE_NAME sns {printf(">> loading from %s.. \n", $4);}
- |
- sns KEY_SAVE sns {printf(">> saving.. \n");}
- |
- sns KEY_SAVE WSPACE FILE_NAME sns {printf(">> saving to %s.. \n", $4);}
- |
- sns
- ;
-
-sns:
- WSPACE
- |
- ;
+stmt: KEY_HELP ENDL {printf(">> welcome to scli help menu\n");}
+    | KEY_QUIT ENDL {printf(">> quitting.. \n");}
+    | KEY_LOAD ENDL {printf(">> loading.. \n");}
+    | KEY_LOAD WSPACE FILE_NAME ENDL {printf(">> loading from %s.. \n", $3);}
+    | KEY_SAVE ENDL {printf(">> saving.. \n");}
+    | KEY_SAVE WSPACE FILE_NAME ENDL {printf(">> saving to %s.. \n", $3);}
+    ;
 
 %%
 
-int main(int argc, char *argv[]){
-    yydebug = 1;
+int yymain(int argc, char *argv[]){
+    yydebug = 0;
 
     yyin = fopen(argv[1], "r");
     yyparse();

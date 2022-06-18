@@ -15,7 +15,7 @@ key_save "save"
 name [a-zA-Z_][a-zA-Z0-9_]*
 file_name ({name}\.[a-z]+)
 wspace [ \t]+
-nline \n[ \n\t]*
+endl [ \t]*\n[ \t\n]*
 
 %%
 
@@ -31,7 +31,7 @@ nline \n[ \n\t]*
 
 {name} {printf("<lexlog name>\n"); sscanf(yytext, "%s", yylval.str); return NAME;}
 
-{nline} {printf("<lexlog nline>\n"); return NLINE;}
+{endl} {printf("<lexlog endl>\n"); return ENDL;}
 
 {wspace} {printf("<lexlog wspace>\n"); return WSPACE;}
 

@@ -49,7 +49,8 @@
      NUM = 265,
      NAME = 266,
      FILE_NAME = 267,
-     PRG_EOF = 268
+     PRG_EOF = 268,
+     ENDL = 269
    };
 #endif
 /* Tokens.  */
@@ -64,6 +65,7 @@
 #define NAME 266
 #define FILE_NAME 267
 #define PRG_EOF 268
+#define ENDL 269
 
 
 
@@ -76,7 +78,7 @@ typedef union YYSTYPE
     int num;
 }
 /* Line 1529 of yacc.c.  */
-#line 80 "scli.tab.h"
+#line 82 "scli.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

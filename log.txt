@@ -1,38 +1,4 @@
-<lexlog wspace>
 <lexlog help>
-<lexlog nline>
+<lexlog endl>
 >> welcome to scli help menu
-<lexlog quit>
-<lexlog wspace>
->> quitting.. 
-<lexlog nline>
-<lexlog quit>
-<lexlog wspace>
->> quitting.. 
-<lexlog nline>
-<lexlog load>
-<lexlog wspace>
-<lexlog file_name>
-<lexlog wspace>
->> loading from something123.txt.. 
-<lexlog nline>
-<lexlog save>
-<lexlog wspace>
-<lexlog file_name>
-<lexlog wspace>
->> saving to hello789.csv.. 
-<lexlog nline>
-<lexlog quit>
-<lexlog nline>
->> quitting.. 
-<lexlog load>
-<lexlog nline>
->> loading.. 
-<lexlog save>
-<lexlog wspace>
-<lexlog nline>
->> saving.. 
-<lexlog help>
-<lexlog wspace>
->> welcome to scli help menu
-<lexlog nline>
+<lexlog name>
