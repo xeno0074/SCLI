@@ -1,0 +1,47 @@
+KEY_HELP # NLINE # PRG_EOF
+
+sscanf(yytext, "%s", yylval.str);
+
+%%
+prog_ex:
+ prog
+ |
+ prog stmt_ex
+ ;
+
+prog:
+ prog stmt_ex NLINE
+ |
+ NLINE
+ |
+ ;
+
+stmt_ex:
+ stmt
+ |
+ stmt term
+ |
+ KEY_LOAD WSPACE NAME {printf(">> loading from %s.. \n", $3)}
+ ;
+
+stmt:
+ stmt term WSPACE
+ |
+ WSPACE
+ |
+ ;
+
+term:
+ KEY_HELP {printf(">> welcome to scli help menu\n");}
+ |
+ KEY_QUIT {printf(">> quitting.. \n");}
+ |
+ invalid_term
+ ;
+
+invalid_term:
+ invalid_term OTHER
+ |
+ OTHER  {printf(">> other\n");}
+ ;
+%%
