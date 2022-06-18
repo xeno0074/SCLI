@@ -1,4 +1,35 @@
+<lexlog endl>
 <lexlog help>
 <lexlog endl>
 >> welcome to scli help menu
-<lexlog name>
+<lexlog quit>
+<lexlog endl>
+>> quitting.. 
+<lexlog quit>
+<lexlog endl>
+>> quitting.. 
+<lexlog load>
+<lexlog wspace>
+<lexlog file_name>
+<lexlog endl>
+>> loading from something123.txt.. 
+<lexlog save>
+<lexlog wspace>
+<lexlog file_name>
+<lexlog endl>
+>> saving to hello789.csv.. 
+<lexlog quit>
+<lexlog endl>
+>> quitting.. 
+<lexlog load>
+<lexlog endl>
+>> loading.. 
+<lexlog save>
+<lexlog endl>
+>> saving.. 
+<lexlog help>
+<lexlog endl>
+>> welcome to scli help menu
+<lexlog quit>
+<lexlog endl>
+>> quitting.. 

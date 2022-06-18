@@ -1,0 +1,255 @@
+Terminals which are not used
+
+   OTHER
+   NLINE
+   NUM
+   NAME
+   PRG_EOF
+
+
+Grammar
+
+    0 $accept: prog $end
+
+    1 prog: WSPACE stmts
+    2     | ENDL stmts
+    3     | stmts
+
+    4 stmts: stmts stmt
+    5      | /* empty */
+
+    6 stmt: KEY_HELP ENDL
+    7     | KEY_QUIT ENDL
+    8     | KEY_LOAD ENDL
+    9     | KEY_LOAD WSPACE FILE_NAME ENDL
+   10     | KEY_SAVE ENDL
+   11     | KEY_SAVE WSPACE FILE_NAME ENDL
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+WSPACE (258) 1 9 11
+OTHER (259)
+NLINE (260)
+KEY_HELP (261) 6
+KEY_QUIT (262) 7
+KEY_LOAD (263) 8 9
+KEY_SAVE (264) 10 11
+NUM (265)
+NAME (266)
+FILE_NAME (267) 9 11
+PRG_EOF (268)
+ENDL (269) 2 6 7 8 9 10 11
+
+
+Nonterminals, with rules where they appear
+
+$accept (15)
+    on left: 0
+prog (16)
+    on left: 1 2 3, on right: 0
+stmts (17)
+    on left: 4 5, on right: 1 2 3 4
+stmt (18)
+    on left: 6 7 8 9 10 11, on right: 4
+
+
+state 0
+
+    0 $accept: . prog $end
+
+    WSPACE  shift, and go to state 1
+    ENDL    shift, and go to state 2
+
+    $default  reduce using rule 5 (stmts)
+
+    prog   go to state 3
+    stmts  go to state 4
+
+
+state 1
+
+    1 prog: WSPACE . stmts
+
+    $default  reduce using rule 5 (stmts)
+
+    stmts  go to state 5
+
+
+state 2
+
+    2 prog: ENDL . stmts
+
+    $default  reduce using rule 5 (stmts)
+
+    stmts  go to state 6
+
+
+state 3
+
+    0 $accept: prog . $end
+
+    $end  shift, and go to state 7
+
+
+state 4
+
+    3 prog: stmts .
+    4 stmts: stmts . stmt
+
+    KEY_HELP  shift, and go to state 8
+    KEY_QUIT  shift, and go to state 9
+    KEY_LOAD  shift, and go to state 10
+    KEY_SAVE  shift, and go to state 11
+
+    $default  reduce using rule 3 (prog)
+
+    stmt  go to state 12
+
+
+state 5
+
+    1 prog: WSPACE stmts .
+    4 stmts: stmts . stmt
+
+    KEY_HELP  shift, and go to state 8
+    KEY_QUIT  shift, and go to state 9
+    KEY_LOAD  shift, and go to state 10
+    KEY_SAVE  shift, and go to state 11
+
+    $default  reduce using rule 1 (prog)
+
+    stmt  go to state 12
+
+
+state 6
+
+    2 prog: ENDL stmts .
+    4 stmts: stmts . stmt
+
+    KEY_HELP  shift, and go to state 8
+    KEY_QUIT  shift, and go to state 9
+    KEY_LOAD  shift, and go to state 10
+    KEY_SAVE  shift, and go to state 11
+
+    $default  reduce using rule 2 (prog)
+
+    stmt  go to state 12
+
+
+state 7
+
+    0 $accept: prog $end .
+
+    $default  accept
+
+
+state 8
+
+    6 stmt: KEY_HELP . ENDL
+
+    ENDL  shift, and go to state 13
+
+
+state 9
+
+    7 stmt: KEY_QUIT . ENDL
+
+    ENDL  shift, and go to state 14
+
+
+state 10
+
+    8 stmt: KEY_LOAD . ENDL
+    9     | KEY_LOAD . WSPACE FILE_NAME ENDL
+
+    WSPACE  shift, and go to state 15
+    ENDL    shift, and go to state 16
+
+
+state 11
+
+   10 stmt: KEY_SAVE . ENDL
+   11     | KEY_SAVE . WSPACE FILE_NAME ENDL
+
+    WSPACE  shift, and go to state 17
+    ENDL    shift, and go to state 18
+
+
+state 12
+
+    4 stmts: stmts stmt .
+
+    $default  reduce using rule 4 (stmts)
+
+
+state 13
+
+    6 stmt: KEY_HELP ENDL .
+
+    $default  reduce using rule 6 (stmt)
+
+
+state 14
+
+    7 stmt: KEY_QUIT ENDL .
+
+    $default  reduce using rule 7 (stmt)
+
+
+state 15
+
+    9 stmt: KEY_LOAD WSPACE . FILE_NAME ENDL
+
+    FILE_NAME  shift, and go to state 19
+
+
+state 16
+
+    8 stmt: KEY_LOAD ENDL .
+
+    $default  reduce using rule 8 (stmt)
+
+
+state 17
+
+   11 stmt: KEY_SAVE WSPACE . FILE_NAME ENDL
+
+    FILE_NAME  shift, and go to state 20
+
+
+state 18
+
+   10 stmt: KEY_SAVE ENDL .
+
+    $default  reduce using rule 10 (stmt)
+
+
+state 19
+
+    9 stmt: KEY_LOAD WSPACE FILE_NAME . ENDL
+
+    ENDL  shift, and go to state 21
+
+
+state 20
+
+   11 stmt: KEY_SAVE WSPACE FILE_NAME . ENDL
+
+    ENDL  shift, and go to state 22
+
+
+state 21
+
+    9 stmt: KEY_LOAD WSPACE FILE_NAME ENDL .
+
+    $default  reduce using rule 9 (stmt)
+
+
+state 22
+
+   11 stmt: KEY_SAVE WSPACE FILE_NAME ENDL .
+
+    $default  reduce using rule 11 (stmt)

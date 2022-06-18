@@ -1,4 +1,4 @@
-<lexlog wspace>
+<lexlog endl>
 <lexlog help>
 <lexlog endl>
 <lexlog quit>

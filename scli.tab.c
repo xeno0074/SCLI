@@ -138,6 +138,7 @@ typedef union YYSTYPE
 /* Copy the second part of user declarations.  */
 #line 19 "scli.y"
 
+#undef YYDEBUG
 #define YYDEBUG 1
 
 #include <stdio.h>
@@ -149,7 +150,7 @@ extern int yyerror(char *s);
 
 
 /* Line 216 of yacc.c.  */
-#line 153 "scli.tab.c"
+#line 154 "scli.tab.c"
 
 #ifdef short
 # undef short
@@ -435,8 +436,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    32,    32,    33,    34,    37,    38,    41,    42,    43,
-      44,    45,    46
+       0,    33,    33,    34,    35,    38,    39,    42,    43,    44,
+      45,    46,    47
 };
 #endif
 
@@ -1347,38 +1348,38 @@ yyreduce:
   switch (yyn)
     {
         case 7:
-#line 41 "scli.y"
+#line 42 "scli.y"
     {printf(">> welcome to scli help menu\n");;}
     break;
 
   case 8:
-#line 42 "scli.y"
+#line 43 "scli.y"
     {printf(">> quitting.. \n");;}
     break;
 
   case 9:
-#line 43 "scli.y"
+#line 44 "scli.y"
     {printf(">> loading.. \n");;}
     break;
 
   case 10:
-#line 44 "scli.y"
+#line 45 "scli.y"
     {printf(">> loading from %s.. \n", (yyvsp[(3) - (4)].str));;}
     break;
 
   case 11:
-#line 45 "scli.y"
+#line 46 "scli.y"
     {printf(">> saving.. \n");;}
     break;
 
   case 12:
-#line 46 "scli.y"
+#line 47 "scli.y"
     {printf(">> saving to %s.. \n", (yyvsp[(3) - (4)].str));;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1382 "scli.tab.c"
+#line 1383 "scli.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1592,13 +1593,13 @@ yyreturn:
 }
 
 
-#line 49 "scli.y"
+#line 50 "scli.y"
 
 
 int yymain(int argc, char *argv[]){
     yydebug = 0;
 
-    // yyin = fopen(argv[1], "r");
+    yyin = fopen(argv[1], "r");
     yyparse();
     fclose(yyin);
     return 0;
